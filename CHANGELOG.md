@@ -3,7 +3,7 @@
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the
 project uses [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.2.0] - 2026-10-08
 
 - Fallback icon: `mimeforge default` and `mimeforge --all` write `default.svg` (generic body without a label), and
   `--png` adds `<size>/default.png`; library: `renderDefaultIcon()`. For apps that need a file to point at when an
