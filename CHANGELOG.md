@@ -3,6 +3,13 @@
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the
 project uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.2] - 2026-10-08
+
+Documentation only.
+
+- README: separate install paths (npx, global, project dependency, from source), a "use it in a project" example,
+  library install and ESM notes
+
 ## [0.1.1] - 2026-10-08
 
 Maintenance release, the first one published through GitHub Actions (npm Trusted Publishing). No code changes.
