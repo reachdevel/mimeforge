@@ -1,0 +1,23 @@
+name: Wrong or missing category for an extension
+description: An extension gets the wrong icon, or only the generic one
+labels: [mapping]
+body:
+  - type: input
+    id: ext
+    attributes:
+      label: Extension(s)
+      description: Without the dot, e.g. `gdoc`, `aab`. `mimeforge --list` shows the current category.
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Suggested category
+      options: [generic, text, code, data, pdf, word, sheet, slides, image, audio, video, archive, font, ebook, database, executable, security, model3d, geo, mail, science, disk, design, game]
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What is the format?
+      description: What the file is and where it is used. Extensions that mean different things in different places are usually left generic on purpose.

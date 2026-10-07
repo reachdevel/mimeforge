@@ -22,4 +22,10 @@ jobs:
         run: test "v$(node -p "require('./package.json').version")" = "$GITHUB_REF_NAME"
       - run: npm ci
       - run: npm test
+      - name: Skip if this version is already on npm
+        id: check
+        run: |
+          V=$(node -p "require('./package.json').version")
+          if npm view "mimeforge@$V" version >/dev/null 2>&1; then echo "published=true" >> "$GITHUB_OUTPUT"; echo "mimeforge@$V is already on npm, nothing to publish"; fi
       - run: npm publish
+        if: steps.check.outputs.published != 'true'

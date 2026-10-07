@@ -1,0 +1,23 @@
+name: Bug report
+description: Something renders wrongly, crashes, or behaves differently from the docs
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: The command or API call you ran, what you expected, what you got. Attach the SVG if it is a visual problem.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: MimeForge version
+      description: Output of `mimeforge --version`
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node.js version and OS
+      placeholder: "Node 22.11, macOS 15"

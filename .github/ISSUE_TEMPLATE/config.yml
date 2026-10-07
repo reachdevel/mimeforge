@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://github.com/reachdevel/mimeforge#readme
+    about: Usage, customization (colors, fonts, bodies) and edge cases are covered in the README.

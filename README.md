@@ -1,6 +1,6 @@
 # MimeForge
 
-[![CI](https://github.com/reachdevel/mimeforge/actions/workflows/ci.yml/badge.svg)](https://github.com/reachdevel/mimeforge/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![npm](https://img.shields.io/npm/v/mimeforge.svg)](https://www.npmjs.com/package/mimeforge) [![CI](https://github.com/reachdevel/mimeforge/actions/workflows/ci.yml/badge.svg)](https://github.com/reachdevel/mimeforge/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 **Generate file-type icons as SVG from a file extension.**
 A page with a type emblem and a colored extension label (`PDF`, `DOCX`, `ROM`, …), ready to drop into a file
