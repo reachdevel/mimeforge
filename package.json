@@ -1,7 +1,7 @@
 {
   "name": "mimeforge",
   "version": "0.1.0",
-  "description": "Generate file-type icons (SVG) from a file extension: pluggable bodies, label fonts and colors.",
+  "description": "Generate file-type icons as SVG from a file extension: 24 bundled bodies, extension labels, pluggable fonts, bodies and colors.",
   "type": "module",
   "bin": {
     "mimeforge": "dist/cli.js"
@@ -18,18 +18,23 @@
     "node": ">=20"
   },
   "scripts": {
+    "prepare": "npm run build",
     "build": "tsc -p tsconfig.json && node scripts/postbuild.mjs",
     "dev": "tsx src/cli.ts",
     "test": "vitest run",
     "test-run": "tsx src/cli.ts --test-run",
+    "preview": "node scripts/make-preview.mjs",
     "extract-font": "node scripts/extract-font.mjs",
     "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "file-icons",
+    "file-type-icons",
     "svg",
     "icons",
-    "mime"
+    "mime",
+    "extension",
+    "generator"
   ],
   "license": "MIT",
   "dependencies": {

@@ -68,8 +68,6 @@ export function loadBodies(spec?: string, tokens: BodyTokens = DEFAULT_TOKENS): 
   };
 }
 
-export const listBundledCategories = (): Category[] => CATEGORIES.filter((c) => existsSync(assetPath('bodies', `${c}.svg`)));
-
 /** Replace the color tokens in a body SVG. */
 export function recolor(svg: string, accent: string, tokens: BodyTokens = DEFAULT_TOKENS, tintAmount = 0.55): string {
   const esc = (s: string): string => s.replace(/[.*+?^${}()|[\]\\#]/g, '\\$&');

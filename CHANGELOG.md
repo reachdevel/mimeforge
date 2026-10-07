@@ -1,0 +1,15 @@
+# Changelog
+
+All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the
+project uses [Semantic Versioning](https://semver.org/).
+
+## [0.1.0] - 2026-10-07
+
+First release.
+
+- 24 bundled icon bodies and a bitmap label font (Monogram, CC0)
+- ~1,365 extensions mapped to categories from mime-db plus curated mappings
+- CLI: `--all`, `--list`, `--test-run`, `--font`, `--body`, `--color`, `--colors`, `--accent`, `--label-case`, `--no-label`,
+  `--png`, `--config`
+- Library API: `renderIcon`, `loadFont`, `loadBodies`, `createPalette` and friends
+- Pluggable fonts (bitmap JSON, TTF, OTF, WOFF), bodies (directory or single SVG) and colors (per category or extension)
