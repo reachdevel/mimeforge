@@ -5,7 +5,7 @@ Thanks for helping. Small, focused pull requests are easiest to review.
 ## Setup
 
 ```bash
-git clone <repository-url> mimeforge
+git clone https://github.com/reachdevel/mimeforge.git
 cd mimeforge
 npm install        # installs and builds
 npm test           # vitest
@@ -38,6 +38,6 @@ Node.js 20 or newer. The source is TypeScript (ESM) in `src/`; `npm run dev -- p
 
 ## Reporting problems
 
-Open an issue with the extension, the command or API call, and (for visual problems) the SVG you got.
+Open an [issue](https://github.com/reachdevel/mimeforge/issues) (or write to reachdevel@gmail.com) with the extension, the command or API call, and (for visual problems) the SVG you got.
 
 By contributing you agree that your contribution is licensed under the [MIT License](LICENSE).

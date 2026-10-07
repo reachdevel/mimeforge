@@ -1,5 +1,7 @@
 # MimeForge
 
+[![CI](https://github.com/reachdevel/mimeforge/actions/workflows/ci.yml/badge.svg)](https://github.com/reachdevel/mimeforge/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 **Generate file-type icons as SVG from a file extension.**
 A page with a type emblem and a colored extension label (`PDF`, `DOCX`, `ROM`, …), ready to drop into a file
 browser, a download list or a docs site.
@@ -11,6 +13,20 @@ browser, a download list or a docs site.
 - **Size is up to you:** the SVG scales to any size, `<img src="pdf.svg" width="16">` or `width="1024"`.
 - **Everything is swappable:** colors, label font, and the icon bodies themselves.
 
+## Why MimeForge exists
+
+I needed file-type icons as **SVG**, and finding them turned out to be harder than it should be. The projects I could
+find either shipped a fixed set of PNGs or generated PNGs, which means one file per size (16, 20, 32, 48, …) and blurry
+results as soon as the size you need is not one of them. Their code was old, too, and a missing extension meant a
+missing icon.
+
+MimeForge starts from the other end: one small SVG per extension, generated on demand for any of the ~1,365
+extensions it knows (and a sensible fallback for the rest). The size is a choice you make in your HTML, not something
+baked into a file. Colors, fonts and the icon bodies are all replaceable, so it can match your product instead of the
+other way around.
+
+And, frankly, why not? :)
+
 ## Contents
 
 [Quick start](#quick-start) · [Everyday use](#everyday-use) · [Customize](#customize) ([colors](#change-colors) · [label](#change-the-label) · [font](#change-the-font) · [bodies](#change-the-bodies) · [config file](#use-a-config-file) · [PNG](#export-png)) · [Edge cases](#edge-cases) · [Library API](#library-api) · [CLI reference](#cli-reference) · [Categories](#categories) · [Development](#development)
@@ -20,7 +36,7 @@ browser, a download list or a docs site.
 Requires Node.js 20 or newer.
 
 ```bash
-git clone <repository-url> mimeforge
+git clone https://github.com/reachdevel/mimeforge.git
 cd mimeforge
 npm install          # also builds the project
 node dist/cli.js pdf docx webm -o icons
@@ -266,4 +282,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) to contribute.
 
 ## License
 
-[MIT](LICENSE). Third-party material (Monogram font, mime-db) is listed in [THIRD_PARTY.md](THIRD_PARTY.md).
+© 2026 Levent Kurt. [MIT](LICENSE). Third-party material (Monogram font, mime-db) is listed in [THIRD_PARTY.md](THIRD_PARTY.md).

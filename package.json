@@ -2,6 +2,28 @@
   "name": "mimeforge",
   "version": "0.1.0",
   "description": "Generate file-type icons as SVG from a file extension: 24 bundled bodies, extension labels, pluggable fonts, bodies and colors.",
+  "author": {
+    "name": "Levent Kurt",
+    "email": "reachdevel@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reachdevel/mimeforge.git"
+  },
+  "homepage": "https://github.com/reachdevel/mimeforge#readme",
+  "bugs": {
+    "url": "https://github.com/reachdevel/mimeforge/issues"
+  },
+  "keywords": [
+    "file-icons",
+    "file-type-icons",
+    "svg",
+    "icons",
+    "mime",
+    "extension",
+    "generator"
+  ],
   "type": "module",
   "bin": {
     "mimeforge": "dist/cli.js"
@@ -27,19 +49,12 @@
     "extract-font": "node scripts/extract-font.mjs",
     "prepublishOnly": "npm run build && npm test"
   },
-  "keywords": [
-    "file-icons",
-    "file-type-icons",
-    "svg",
-    "icons",
-    "mime",
-    "extension",
-    "generator"
-  ],
-  "license": "MIT",
   "dependencies": {
     "mime-db": "^1.54.0",
     "opentype.js": "^2.0.0"
+  },
+  "optionalDependencies": {
+    "@resvg/resvg-js": "^2.6.2"
   },
   "devDependencies": {
     "@types/mime-db": "^1.43.6",
@@ -47,8 +62,5 @@
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "vitest": "^4.1.11"
-  },
-  "optionalDependencies": {
-    "@resvg/resvg-js": "^2.6.2"
   }
 }
