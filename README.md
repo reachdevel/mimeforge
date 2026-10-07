@@ -35,18 +35,10 @@ And, frankly, why not? :)
 
 Requires Node.js 20 or newer.
 
-```bash
-npx mimeforge pdf docx webm -o icons     # no install needed
-npm i mimeforge                          # or add it to a project (CLI + library)
-```
-
-To work from source instead:
+**Try it, nothing to install:**
 
 ```bash
-git clone https://github.com/reachdevel/mimeforge.git
-cd mimeforge
-npm install          # also builds the project
-node dist/cli.js pdf docx webm -o icons
+npx mimeforge pdf docx webm -o icons
 ```
 
 This writes `icons/pdf.svg`, `icons/docx.svg` and `icons/webm.svg`. Use them like any image:
@@ -55,8 +47,43 @@ This writes `icons/pdf.svg`, `icons/docx.svg` and `icons/webm.svg`. Use them lik
 <img src="icons/pdf.svg" width="32" height="32" alt="PDF">
 ```
 
-The examples below use `mimeforge`. Install it globally with `npm i -g mimeforge`, use `npx mimeforge`, or (from a
-source checkout) run `npm link` once or replace `mimeforge` with `node dist/cli.js`.
+**Install:**
+
+```bash
+npm i -g mimeforge     # a global `mimeforge` command
+npm i mimeforge        # or as a dependency of your project (CLI via npx, plus the library API)
+```
+
+**From source** (to hack on it):
+
+```bash
+git clone https://github.com/reachdevel/mimeforge.git
+cd mimeforge
+npm install            # also builds the project
+node dist/cli.js pdf docx webm -o icons
+```
+
+The examples below use the `mimeforge` command. Without a global install, put `npx` in front of it
+(`npx mimeforge --all`); from a source checkout use `node dist/cli.js` or run `npm link` once.
+
+### Use it in a project
+
+Generate the icons at build time, so your app only ships the SVGs it needs:
+
+```json
+{
+  "scripts": {
+    "icons": "mimeforge --all -o public/icons"
+  },
+  "devDependencies": {
+    "mimeforge": "^0.1.1"
+  }
+}
+```
+
+Then `npm run icons` and reference `/icons/<ext>.svg`. `public/icons/manifest.json` maps every extension to its
+category, which is handy for lookups. If you only show a few types, list them instead of `--all`. To render icons at
+runtime instead (a server, a build plugin), use the [library API](#library-api).
 
 ## Everyday use
 
@@ -199,6 +226,8 @@ how to change it.
 
 ## Library API
 
+Install with `npm i mimeforge`. The package is ESM, so use `import` (from CommonJS: `const { renderIcon } = await import('mimeforge')`).
+
 ```ts
 import { renderIcon, loadFont, loadBodies, createPalette } from 'mimeforge';
 
@@ -215,8 +244,7 @@ renderIcon('xyz', {
 ```
 
 `renderIcon` returns `{ svg, ext, category, accent }`. Other exports: `categoryFor`, `allExtensions`, `CATEGORIES`,
-`DEFAULT_PALETTE`, `validateBody`, `renderLabel`, `bitmapFont`, `outlineFont` (see `src/index.ts`).
-The package is ESM only.
+`DEFAULT_PALETTE`, `validateBody`, `renderLabel`, `bitmapFont`, `outlineFont` (see `src/index.ts`). Types are included.
 
 ## CLI reference
 
