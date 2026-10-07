@@ -29,7 +29,7 @@ And, frankly, why not? :)
 
 ## Contents
 
-[Quick start](#quick-start) · [Everyday use](#everyday-use) · [Customize](#customize) ([colors](#change-colors) · [label](#change-the-label) · [font](#change-the-font) · [bodies](#change-the-bodies) · [config file](#use-a-config-file) · [PNG](#export-png)) · [Edge cases](#edge-cases) · [Library API](#library-api) · [CLI reference](#cli-reference) · [Categories](#categories) · [Development](#development)
+[Quick start](#quick-start) · [Static hosts](#use-it-on-a-static-host-with-a-fallback-icon) · [Everyday use](#everyday-use) · [Customize](#customize) ([colors](#change-colors) · [label](#change-the-label) · [font](#change-the-font) · [bodies](#change-the-bodies) · [config file](#use-a-config-file) · [PNG](#export-png)) · [Edge cases](#edge-cases) · [Library API](#library-api) · [CLI reference](#cli-reference) · [Categories](#categories) · [Development](#development)
 
 ## Quick start
 
@@ -85,11 +85,39 @@ Then `npm run icons` and reference `/icons/<ext>.svg`. `public/icons/manifest.js
 category, which is handy for lookups. If you only show a few types, list them instead of `--all`. To render icons at
 runtime instead (a server, a build plugin), use the [library API](#library-api).
 
+### Use it on a static host (with a fallback icon)
+
+If your app serves a prebuilt set of files, say `/m/<size>/<ext>.png`, generate the whole set once:
+
+```bash
+mimeforge --all --png 16,20,32,48 -o m
+```
+
+```
+m/pdf.svg            m/16/pdf.png   m/20/pdf.png   m/32/pdf.png   m/48/pdf.png
+m/default.svg        m/16/default.png  …            the fallback, see below
+m/manifest.json      { "pdf": "pdf", "gdoc": "word", … }   every known extension and its category
+```
+
+Extensions MimeForge does not know (a `.hoppa` file) have no file of their own. `default.svg` and
+`<size>/default.png` are the fallback for those: the generic page with a question mark and **no label** (an unknown
+extension cannot be named). Point your app at it when an icon is missing:
+
+```js
+const manifest = await (await fetch('/m/manifest.json')).json();
+const src = ext in manifest ? `/m/32/${ext}.png` : '/m/32/default.png';
+```
+
+or let the browser do it: `<img src="/m/32/hoppa.png" onerror="this.onerror=null;this.src='/m/32/default.png'">`.
+To give one unknown extension its own icon instead, generate it explicitly (`mimeforge hoppa`, which draws the generic
+body with the label `HOPPA`) or, from code, with a category of your choice (`renderIcon('hoppa', { category: 'archive' })`).
+
 ## Everyday use
 
 ```bash
 mimeforge pdf docx webm -o icons        # a few icons
-mimeforge --all -o icons                # every known extension, plus icons/manifest.json (ext → category)
+mimeforge --all -o icons                # every known extension, plus icons/default.svg and icons/manifest.json (ext → category)
+mimeforge default -o icons              # only the fallback icon: generic body, no label
 mimeforge --list                        # which extension gets which category
 mimeforge --test-run                    # visual check, see below
 ```
@@ -209,7 +237,7 @@ optional dependency `@resvg/resvg-js` (installed by default; if it is missing, M
 
 | Situation | What happens |
 |---|---|
-| Unknown extension (`mimeforge xyz`) | generic body (question mark) with the label `XYZ` |
+| Unknown extension (`mimeforge xyz`) | generic body (question mark) with the label `XYZ`; for a label-less fallback file use `mimeforge default` (also written by `--all`) |
 | Long extension (`webmanifest`) | up to 6 letters are drawn at full size; longer text is scaled down proportionally to fit the label, and below about a third of the size letters are dropped from the end |
 | Light accent color | label text switches to a dark ink when white would have less than 3:1 contrast |
 | Character the font does not have | skipped |
@@ -229,9 +257,10 @@ how to change it.
 Install with `npm i mimeforge`. The package is ESM, so use `import` (from CommonJS: `const { renderIcon } = await import('mimeforge')`).
 
 ```ts
-import { renderIcon, loadFont, loadBodies, createPalette } from 'mimeforge';
+import { renderIcon, renderDefaultIcon, loadFont, loadBodies, createPalette } from 'mimeforge';
 
 renderIcon('pdf').svg;                                    // SVG string
+renderDefaultIcon().svg;                                  // fallback icon: generic body, no label
 renderIcon('docx', { accent: '#0a7', label: 'WORD' }).svg; // custom accent and label text
 
 renderIcon('xyz', {
@@ -243,14 +272,15 @@ renderIcon('xyz', {
 });
 ```
 
-`renderIcon` returns `{ svg, ext, category, accent }`. Other exports: `categoryFor`, `allExtensions`, `CATEGORIES`,
+`renderIcon` returns `{ svg, ext, category, accent }`. Other exports: `renderDefaultIcon`, `categoryFor`, `allExtensions`, `CATEGORIES`,
 `DEFAULT_PALETTE`, `validateBody`, `renderLabel`, `bitmapFont`, `outlineFont` (see `src/index.ts`). Types are included.
 
 ## CLI reference
 
 ```
 mimeforge <ext...> [options]        write <out>/<ext>.svg for the given extensions
-mimeforge --all [options]           every known extension + manifest.json
+mimeforge --all [options]           every known extension + default.svg + manifest.json
+mimeforge default [options]         only the fallback icon (generic body, no label)
 mimeforge --test-run [options]      HTML preview page (default dir: out/test-run)
 ```
 

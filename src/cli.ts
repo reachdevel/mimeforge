@@ -8,7 +8,7 @@ import { renderPng } from './png.js';
 import { loadFont } from './font.js';
 import { allExtensions, categoryFor } from './mime.js';
 import { createPalette } from './palette.js';
-import { renderIcon, type RenderOptions } from './render.js';
+import { renderDefaultIcon, renderIcon, type RenderOptions } from './render.js';
 import { testRun } from './testrun.js';
 import { ROOT } from './paths.js';
 
@@ -16,6 +16,7 @@ const HELP = `MimeForge – generate file-type icons (SVG) from file extensions
 
 Usage
   mimeforge <ext...> [options]           write <out>/<ext>.svg for the given extensions
+                                         ("default" = the fallback icon without a label)
   mimeforge --all [options]              every known extension (mime-db + extras) + manifest.json
   mimeforge --test-run [options]         write an HTML page with all body types at 16/48/128 px
 
@@ -97,21 +98,21 @@ async function main(): Promise<void> {
   const out = resolve(values.out ?? cfg.out ?? 'out');
   mkdirSync(out, { recursive: true });
   const pngSizes = (values.png ? values.png.split(',').map(Number) : cfg.png ?? []).filter((n) => Number.isFinite(n) && n > 0);
-  const exts = values.all ? allExtensions() : positionals.map((e) => e.toLowerCase().replace(/^\./, ''));
+  const exts = values.all ? [...allExtensions(), 'default'] : positionals.map((e) => e.toLowerCase().replace(/^\./, ''));
   const manifest: Record<string, string> = {};
   let bytes = 0;
   for (const ext of exts) {
-    const r = renderIcon(ext, opts);
+    const r = ext === 'default' ? renderDefaultIcon(opts) : renderIcon(ext, opts);
     writeFileSync(join(out, `${ext}.svg`), r.svg);
     for (const size of pngSizes) {
       mkdirSync(join(out, String(size)), { recursive: true });
       writeFileSync(join(out, String(size), `${ext}.png`), await renderPng(r.svg, size));
     }
-    manifest[ext] = r.category;
+    if (ext !== 'default') manifest[ext] = r.category;
     bytes += r.svg.length;
   }
   if (values.all) writeFileSync(join(out, 'manifest.json'), JSON.stringify(manifest, null, 1));
-  console.log(`${exts.length} icon(s) → ${out}  (${(bytes / 1024).toFixed(0)} KB total, ${(bytes / exts.length / 1024).toFixed(1)} KB avg)`);
+  console.log(`${exts.length} icon(s)${values.all ? ' (incl. default)' : ''} → ${out}  (${(bytes / 1024).toFixed(0)} KB total, ${(bytes / exts.length / 1024).toFixed(1)} KB avg)`);
 }
 
 main().catch((e: Error) => fail(e.message));

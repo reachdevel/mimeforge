@@ -46,3 +46,11 @@ export function renderIcon(extension: string, opts: RenderOptions = {}): RenderR
   }
   return { svg: svg.replace(/>\s*\n\s*</g, '><').trim() + '\n', ext, category, accent };
 }
+
+/**
+ * The fallback icon for extensions that have no icon of their own: the generic body without a label
+ * (an unknown extension cannot be named). Written as `default.svg` by `mimeforge --all`.
+ */
+export function renderDefaultIcon(opts: RenderOptions = {}): RenderResult {
+  return renderIcon('default', { ...opts, category: 'generic', label: false });
+}

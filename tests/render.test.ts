@@ -1,7 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { allExtensions, loadFont, renderIcon } from '../src/index.js';
+import { allExtensions, loadFont, renderDefaultIcon, renderIcon } from '../src/index.js';
 
 describe('render', () => {
+  it('default icon is the generic body without a label', () => {
+    const r = renderDefaultIcon();
+    expect(r.category).toBe('generic');
+    expect(r.svg).not.toContain('id="label"');
+    expect(r.svg).toContain('id="page"');
+    expect(renderDefaultIcon({ accent: '#123456' }).svg).toContain('#123456');
+  });
   it('replaces tokens with the accent and keeps the SVG well formed', () => {
     const { svg } = renderIcon('pdf', { accent: '#123456' });
     expect(svg).not.toMatch(/FF00FF|FF99FF/i);

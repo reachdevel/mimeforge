@@ -3,6 +3,13 @@
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the
 project uses [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+- Fallback icon: `mimeforge default` and `mimeforge --all` write `default.svg` (generic body without a label), and
+  `--png` adds `<size>/default.png`; library: `renderDefaultIcon()`. For apps that need a file to point at when an
+  extension has no icon.
+- PNG export no longer loads system fonts: `--all --png 16` takes about half a second instead of minutes.
+
 ## [0.1.2] - 2026-10-08
 
 Documentation only.

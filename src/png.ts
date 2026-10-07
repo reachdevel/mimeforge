@@ -6,5 +6,6 @@ export async function renderPng(svg: string, size: number): Promise<Buffer> {
   } catch {
     throw new Error('PNG export needs the optional dependency @resvg/resvg-js (npm i @resvg/resvg-js).');
   }
-  return new mod.Resvg(svg, { fitTo: { mode: 'width', value: size } }).render().asPng();
+  // Our icons contain no <text>, so skip loading system fonts (it dominates the render time).
+  return new mod.Resvg(svg, { fitTo: { mode: 'width', value: size }, font: { loadSystemFonts: false } }).render().asPng();
 }
