@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+<g id="page">
+<path d="M7.5 2.5H19.5L26.5 9.5V27.5A2 2 0 0 1 24.5 29.5H7.5A2 2 0 0 1 5.5 27.5V4.5A2 2 0 0 1 7.5 2.5Z" fill="#FFFFFF" stroke="#B8BFC7" stroke-linejoin="round"/>
+</g>
+<g id="emblem">
+<path d="M9 10.5V15.5A7 2.5 0 0 0 23 15.5V10.5Z" fill="#FF99FF"/>
+<ellipse cx="16" cy="10.5" rx="7" ry="2.5" fill="#FF00FF"/>
+<path d="M9 12.8A7 2.5 0 0 0 23 12.8V14.8A7 2.5 0 0 1 9 14.8Z" fill="#FF00FF"/>
+</g>
+<g id="fold">
+<path d="M19.5 2.5V7.5Q19.5 9.5 21.5 9.5H26.5Z" fill="#E3E7EB"/>
+<path d="M19.5 2.5V7.5Q19.5 9.5 21.5 9.5H26.5Z" fill="none" stroke="#B8BFC7" stroke-linejoin="round"/>
+</g>
+</svg>

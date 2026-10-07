@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+<g id="page">
+<path d="M7.5 2.5H19.5L26.5 9.5V27.5A2 2 0 0 1 24.5 29.5H7.5A2 2 0 0 1 5.5 27.5V4.5A2 2 0 0 1 7.5 2.5Z" fill="#FFFFFF" stroke="#B8BFC7" stroke-linejoin="round"/>
+</g>
+<g id="emblem">
+<path d="M16 18C14 15.5 11 13.5 11 11A5 5 0 0 1 21 11C21 13.5 18 15.5 16 18Z" fill="#FF00FF"/>
+<circle cx="16" cy="11" r="2" fill="#FFFFFF"/>
+</g>
+<g id="fold">
+<path d="M19.5 2.5V7.5Q19.5 9.5 21.5 9.5H26.5Z" fill="#E3E7EB"/>
+<path d="M19.5 2.5V7.5Q19.5 9.5 21.5 9.5H26.5Z" fill="none" stroke="#B8BFC7" stroke-linejoin="round"/>
+</g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+<g id="page">
+<path d="M7.5 2.5H19.5L26.5 9.5V27.5A2 2 0 0 1 24.5 29.5H7.5A2 2 0 0 1 5.5 27.5V4.5A2 2 0 0 1 7.5 2.5Z" fill="#FFFFFF" stroke="#B8BFC7" stroke-linejoin="round"/>
+</g>
+<g id="emblem">
+<polygon points="16,7 20.76,9.75 20.76,15.25 16,18 11.24,15.25 11.24,9.75" fill="#FF00FF"/>
+<polygon points="16,7 20.76,9.75 16,12.5 11.24,9.75" fill="#FF99FF"/>
+<path d="M16 12.5L11.24 9.75M16 12.5L20.76 9.75M16 12.5V18" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+</g>
+<g id="fold">
+<path d="M19.5 2.5V7.5Q19.5 9.5 21.5 9.5H26.5Z" fill="#E3E7EB"/>
+<path d="M19.5 2.5V7.5Q19.5 9.5 21.5 9.5H26.5Z" fill="none" stroke="#B8BFC7" stroke-linejoin="round"/>
+</g>
+</svg>
