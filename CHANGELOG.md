@@ -3,6 +3,13 @@
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the
 project uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.1] - 2026-10-08
+
+Maintenance release, the first one published through GitHub Actions (npm Trusted Publishing). No code changes.
+
+- README: npm version badge
+- Repository metadata, issue and pull request templates, publish workflow guard
+
 ## [0.1.0] - 2026-10-07
 
 First release.

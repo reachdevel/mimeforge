@@ -1,6 +1,6 @@
 {
   "name": "mimeforge",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Generate file-type icons as SVG from a file extension: 24 bundled bodies, extension labels, pluggable fonts, bodies and colors.",
   "author": {
     "name": "Levent Kurt",
