@@ -36,6 +36,13 @@ And, frankly, why not? :)
 Requires Node.js 20 or newer.
 
 ```bash
+npx mimeforge pdf docx webm -o icons     # no install needed
+npm i mimeforge                          # or add it to a project (CLI + library)
+```
+
+To work from source instead:
+
+```bash
 git clone https://github.com/reachdevel/mimeforge.git
 cd mimeforge
 npm install          # also builds the project
@@ -48,8 +55,8 @@ This writes `icons/pdf.svg`, `icons/docx.svg` and `icons/webm.svg`. Use them lik
 <img src="icons/pdf.svg" width="32" height="32" alt="PDF">
 ```
 
-Optionally run `npm link` once to get a global `mimeforge` command. The examples below use `mimeforge`; without
-linking, replace it with `node dist/cli.js`.
+The examples below use `mimeforge`. Install it globally with `npm i -g mimeforge`, use `npx mimeforge`, or (from a
+source checkout) run `npm link` once or replace `mimeforge` with `node dist/cli.js`.
 
 ## Everyday use
 

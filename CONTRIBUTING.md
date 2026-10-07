@@ -36,6 +36,13 @@ Node.js 20 or newer. The source is TypeScript (ESM) in `src/`; `npm run dev -- p
   [THIRD_PARTY.md](THIRD_PARTY.md) with the license text under `third_party/`.
 - Keep the output deterministic: the same input must produce the same SVG bytes.
 
+## Releasing (maintainers)
+
+1. Update `CHANGELOG.md` and bump `version` in `package.json` (`npm version patch|minor` also tags).
+2. Push the commit and the tag: `git push origin main --follow-tags`.
+3. The `Publish` workflow tests and publishes to npm using Trusted Publishing (configured once under the package's
+   settings on npmjs.com; the very first version has to be published by hand with `npm publish`).
+
 ## Reporting problems
 
 Open an [issue](https://github.com/reachdevel/mimeforge/issues) (or write to reachdevel@gmail.com) with the extension, the command or API call, and (for visual problems) the SVG you got.
